@@ -69,6 +69,7 @@ public class DuckManager : MonoBehaviour
 
     public void releaseDuck()
     {
+        
         if(pool.Count == 0)
         {
             //Debug.Log("A");

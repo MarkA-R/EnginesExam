@@ -22,6 +22,7 @@ public class DuckBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Respawn"))
         {
+           
             DuckManager.instance.addDuck(this);
             
         }
