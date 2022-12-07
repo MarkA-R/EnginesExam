@@ -1,4 +1,6 @@
 # EnginesExam
+CONTROLS: WASD to move the cursor up/down and left/right. Space to shoot at ducks (Green Squares) in front of it.
+
 OBJECT POOLING EXPLAINATION
 Object pooling was implemented by having a Queue of ducks that can be used at any one time. Whenever a duck is needed, a duck is popped from the Queue and the gameobeject of that duck is enabled so it can fly freely. There are 5 ducks in the scene. In their Start() methods, they add themselves to the Queue of ducks in the DuckManager. When they are added, their gameObject gets inactivated and their position is set to the DuckManager's position in world space. The DuckManager has code running in the Update() funciton that creates new ducks every 0.5 seconds. When a new duck needs to be created, the duck at the top of the Queue is popped and its gameObject is activated. In the Update() function of the ducks, their position is set to rise. Since the duck's gameObject has been enabled, the duck can sart to rise up until they hit the reset collider at the top of the scene. Once they hit the reset collider, they are added back into the Queue and deactivated again.
 
