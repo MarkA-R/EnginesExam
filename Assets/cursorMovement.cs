@@ -5,8 +5,17 @@ using UnityEngine;
 public class cursorMovement : MonoBehaviour
 {
 
-    Command[] movementCommands = new Command[4];
+    public Command[] movementCommands = new Command[4];
     Command shootingCommand;
+    public static cursorMovement instance;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +46,7 @@ public class cursorMovement : MonoBehaviour
         {
             doingActions.Add(3);
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             shootingCommand.doAction(gameObject);
         }

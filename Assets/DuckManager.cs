@@ -8,7 +8,7 @@ public class DuckManager : MonoBehaviour
     Stack<DuckBehaviour> pool = new Stack<DuckBehaviour>();
     float secondsPerDuck = 0.5f;
     float secondsSinceLastDuck = 0f;
-
+    int failedShotsInARow = 0;
 
     public void Awake()
     {
@@ -21,6 +21,27 @@ public class DuckManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public int getFailedShots()
+    {
+        return failedShotsInARow;
+    }
+
+    public void setFailedShots(int i)
+    {
+        failedShotsInARow = i;
+        Debug.Log(failedShotsInARow);
+        if(failedShotsInARow >= 2)
+        {
+            cursorMovement.instance.movementCommands[0] = new moveDownCommand();
+            cursorMovement.instance.movementCommands[1] = new moveUpCommand();
+        }
+        else
+        {
+            cursorMovement.instance.movementCommands[1] = new moveDownCommand();
+            cursorMovement.instance.movementCommands[0] = new moveUpCommand();
+        }
     }
 
     // Update is called once per frame
@@ -50,12 +71,12 @@ public class DuckManager : MonoBehaviour
     {
         if(pool.Count == 0)
         {
-            Debug.Log("A");
+            //Debug.Log("A");
             return;
         }
-        Debug.Log("B");
+       // Debug.Log("B");
         DuckBehaviour d = pool.Pop();
-        Debug.Log(d);
+        //Debug.Log(d);
         d.gameObject.SetActive(true);
     }
 }

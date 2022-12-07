@@ -14,7 +14,19 @@ public class shootCommand : Command
     public override void doAction(GameObject g)
     {
         //raycast forward
-
+        RaycastHit hit;
+        Physics.Raycast(g.transform.position, g.transform.forward, out hit);
+        if(hit.collider == null)
+        {
+            //Debug.Log("FAILED SHOT");
+            DuckManager.instance.setFailedShots(DuckManager.instance.getFailedShots() +1);
+            return;
+        }
+        if (hit.collider.gameObject.tag.Equals("Duck"))
+        {
+            DuckManager.instance.setFailedShots(0);
+            DuckManager.instance.addDuck(hit.collider.gameObject.GetComponent<DuckBehaviour>());
+        }
     }
 }
 
