@@ -31,7 +31,7 @@ public class DuckManager : MonoBehaviour
     public void setFailedShots(int i)
     {
         failedShotsInARow = i;
-        Debug.Log(failedShotsInARow);
+        //Debug.Log(failedShotsInARow);
         if(failedShotsInARow >= 2)
         {
             cursorMovement.instance.movementCommands[0] = new moveDownCommand();
@@ -78,5 +78,6 @@ public class DuckManager : MonoBehaviour
         DuckBehaviour d = pool.Pop();
         //Debug.Log(d);
         d.gameObject.SetActive(true);
+        d.transform.position += new Vector3(Random.Range(-2f, 2f), 0, 0);
     }
 }
